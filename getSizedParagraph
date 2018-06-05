@@ -1,0 +1,27 @@
+<?php 
+    //the function will call number(th) needle
+    function strposX($haystack, $needle, $number){
+    if($number == '1'){
+        	return strpos($haystack, $needle);
+	    }elseif($number > '1'){
+	        return strpos($haystack, $needle, strposX($haystack, $needle, $number - 1) + strlen($needle));
+	    }else{
+	        return error_log('Error: Value for parameter $number is out of range');
+	    }
+	}
+  //the function will call the paragraph is greater then $length of string .
+    function getSizedParagraph($string, $length = 1500){
+    	$pos = 0; 
+    	$i = 1;
+    	while ($pos<$length) {
+			$pos = strposX($string, '</p>', $i);
+			$i++;
+    	}
+        $a = substr($string,0, $pos+4);
+        return $a;
+    }
+    
+    // Then call the function, passing the string variable and length 
+    $HTMLString = "what you want to write in the string."
+    echo getFirstPara($HTMLString, 1500);
+?>
